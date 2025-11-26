@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Hospitality Stuff</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<div class="content">
+					<div class="inner">
+						<h1>BHMCT GTU SYLLABUS</h1>
+						<p>Comprehensive overview and resources for this course.</p>
+					</div>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="#overview">Overview</a></li>
+						<li><a href="#syllabus">Syllabus</a></li>
+					</ul>
+				</nav>
+			</header>
+
+
+            <!-- Subject Dropdown -->
+<div style="margin-top: 1rem; width: 80%; max-width: 300px; margin-left: auto; margin-right: auto;">
+	<select onchange="if(this.value) window.location.href=this.value;"
+	        style="width: 100%; padding: 0.5rem; font-size: 0.9rem; border: none; border-radius: 4px; outline: none; background: rgba(255,255,255,0.1); color: white;">
+		<option value="">Select Semester</option>
+		<option value="../gtusem1/sem1.html">Semester 1</option>
+		<option value="../gtusem2/sem2.html">Semester 2</option>
+		<option value="../gtusem3/sem3.html">Semester 3 </option>
+		<option value="../gtusem4/sem4.html ">Semester 4</option>
+		<option value="subjects/subject3.html">IT</option>
+		<option value="../gtusem3/#">Semester 6</option>
+		<option value="subjects/subject3.html">Semester 7</option>
+		<option value="subjects/subject3.html">JT</option>
+		<option value="../course/gtu-syllabus.html">All Semester</option>
+
+		<!-- ... continue ... -->
+	</select>
+</div>
+
+
+<!-- Bg Audio and effects -->
+<div style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
+
+  <button id="soundToggle">♪♪</button>
+
+  <audio id="bgAudio" loop preload="auto">
+    <source src="../sounds/nature.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
+  <audio id="clickSound" preload="auto" src="../sounds/click.mp3"></audio>
+</div>
+
+  <script>
+    const bgAudio = document.getElementById('bgAudio');
+    const clickSound = document.getElementById('clickSound');
+    const toggleBtn = document.getElementById('soundToggle');
+
+    let isPlaying = false;
+
+    // Check saved preference
+    const saved = localStorage.getItem('siteSoundOn');
+    if (saved === 'true') {
+      isPlaying = false;  // we will call toggle to play
+      toggleBtn.click();
+    }
+
+    // Fade-in helper
+    function fadeIn(audio, targetVol = 0.4, step = 0.02, interval = 100) {
+      audio.volume = 0;
+      audio.play();
+      const fade = setInterval(() => {
+        if (audio.volume < targetVol) {
+          audio.volume = Math.min(audio.volume + step, targetVol);
+        } else {
+          clearInterval(fade);
+        }
+      }, interval);
+    }
+
+    // Fade-out helper
+    function fadeOut(audio, step = 0.02, interval = 100) {
+      const fade = setInterval(() => {
+        if (audio.volume > 0) {
+          audio.volume = Math.max(audio.volume - step, 0);
+        } else {
+          audio.pause();
+          clearInterval(fade);
+        }
+      }, interval);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        // Start ambience
+        fadeIn(bgAudio, 0.4);
+        toggleBtn.textContent = '⏹';
+        localStorage.setItem('siteSoundOn', 'true');
+      } else {
+        // Stop ambience
+        fadeOut(bgAudio);
+        toggleBtn.textContent = '▶';
+        localStorage.setItem('siteSoundOn', 'false');
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Click sound effect for links/buttons
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('click', () => {
+        // play click sound (without looping)
+        clickSound.currentTime = 0;
+        clickSound.play();
+      });
+    });
+
+    // Optional: Auto-play attempt after first user interaction
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('click', function once() {
+        if (!isPlaying) {
+          toggleBtn.click();
+        }
+        document.body.removeEventListener('click', once);
+      });
+    });
+  </script>
+
+			<!-- Main -->
+			<div id="main">
+
+				<!-- Overview -->
+				<article id="overview">
+					<h2 class="major">Overview</h2>
+					<p>Welcome to Hospitality Stuff, your trusted source for GTU Hotel Management Notes and academic resources. This platform is designed to support students pursuing hospitality and tourism courses under <strong>Gujarat Technological University (GTU).</strong></p>
+					<p>Here, you’ll find well-structured, easy-to-understand notes, developed according to the latest GTU syllabus and examination pattern. Each unit covers essential concepts, practical insights, and industry-relevant examples to help students build both academic understanding and professional competence.</p>
+					<p>Our goal is to make learning simple, accessible, and industry-aligned, empowering every student to succeed in their exams and future hospitality careers.</p>
+
+				</article>
+
+				<!-- Syllabus -->
+				<article id="syllabus">
+					<!-- Content -->
+			<div class="content">
+				<div class="inner" style="padding: 0 1.5rem; max-width: 900px; margin: 0 auto;">
+
+					<center>
+					<h2 class="major">(BHMCT)</h2></center>
+					<p><strong>Program Code:</strong> 30 – Hotel Management & Catering Technology<br>
+					<strong>Academic Year:</strong> 2024–25</p>
+
+					<!-- Semester 1 -->
+					<h3>Semester 1</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Subcode</th>
+									<th>Subject Name</th>
+									<th>Category</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>BH01000011</td><td>Introduction to Hospitality and Tourism Industry</td><td>Core Courses</td></tr>
+								<tr><td>BH01000021</td><td>Fundamentals of Rooms Division Management-1</td><td>Core Courses</td></tr>
+								<tr><td>BH01000031</td><td>Fundamentals of Food & Beverage Management-1</td><td>Core Courses</td></tr>
+								<tr><td>BH01000041</td><td>Business Communication</td><td>Skill Enhancement Courses</td></tr>
+								<tr><td>BH01000051</td><td>Fundamentals of Computer Application</td><td>Ability Enhancement Courses</td></tr>
+								<tr><td>BH01000061</td><td>Fundamentals of ESG for Sustainability</td><td>Value Added Courses</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Semester 2 -->
+					<h3>Semester 2</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Subcode</th>
+									<th>Subject Name</th>
+									<th>Category</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>BH02000011</td><td>Fundamentals of Food Production</td><td>Core Courses</td></tr>
+								<tr><td>BH02000021</td><td>Fundamentals of Rooms Division Management-2</td><td>Core Courses</td></tr>
+								<tr><td>BH02000031</td><td>Fundamentals of Food & Beverage Management-2</td><td>Core Courses</td></tr>
+								<tr><td>BH02000041</td><td>Fundamentals of Travel and Tourism</td><td>Core Courses</td></tr>
+								<tr><td>BH02000051</td><td>Personality Skills for Hospitality Industry</td><td>Skill Enhancement Courses</td></tr>
+								<tr><td>BH02000061</td><td>Indian Knowledge System</td><td>Indian Knowledge System (IKS)</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Semester 3 -->
+					<h3>Semester 3</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Subcode</th>
+									<th>Subject Name</th>
+									<th>Category</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>BH03000011</td><td>Intermediate of Food Production</td><td>Core Courses</td></tr>
+								<tr><td>BH03000021</td><td>Intermediate of Food and Beverage Service</td><td>Core Courses</td></tr>
+								<tr><td>BH03000031</td><td>Intermediate of Rooms Division Management</td><td>Core Courses</td></tr>
+								<tr><td>BH03000041</td><td>Hospitality French</td><td>Ability Enhancement Courses</td></tr>
+								<tr><td>BH03000051</td><td>Basic Hotel Accounting</td><td>Multidisciplinary Course</td></tr>
+								<tr><td>BH03000061</td><td>Health and Wellness</td><td>Value Added Courses</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Semester 4 -->
+					<h3>Semester 4</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Subcode</th>
+									<th>Subject Name</th>
+									<th>Category</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>BH04000011</td><td>Basics of Bakery and Confectionery</td><td>Core Courses</td></tr>
+								<tr><td>BH04000021</td><td>Bar and Beverages</td><td>Core Courses</td></tr>
+								<tr><td>BH04000031</td><td>Advanced Rooms Division Management</td><td>Core Courses</td></tr>
+								<tr><td>BH04000041</td><td>Food Safety and Hygiene</td><td>Core Courses</td></tr>
+								<tr><td>BH04000051</td><td>Food and Beverage Control</td><td>Core Courses</td></tr>
+								<tr><td>BH04000061</td><td>Hospitality and Tourism Law</td><td>Core Courses</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+<p>Click Here to View Full Page <a href="../course/gtu-syllabus.html"> 2024-2025 Syllabus</a></p>
+				</article>
+
+				
+
+			</div>
+
+							<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Hospitality Stuff <a href="https://lancealot.in"> Powered by Lancealot</a>.</p>
+					</footer>
+
+		</div>
+
+		<!-- BG -->
+		<div id="bg"></div>
+
+		<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

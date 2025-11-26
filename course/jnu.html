@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hospitality Stuff</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<div class="content">
+					<div class="inner">
+						<h1>B.Sc. DEGREE IN HOSPITALITY & HOTEL ADMINISTRATION</h1>
+						<p>Comprehensive overview and resources for this course from NCHMCT and JNU.</p>
+					</div>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="#overview">Overview</a></li>
+						<li><a href="#syllabus">Syllabus</a></li>
+					</ul>
+				</nav>
+			</header>
+
+
+            <!-- Subject Dropdown -->
+<div style="margin-top: 1rem; width: 80%; max-width: 300px; margin-left: auto; margin-right: auto;">
+	<select onchange="if(this.value) window.location.href=this.value;"
+	        style="width: 100%; padding: 0.5rem; font-size: 0.9rem; border: none; border-radius: 4px; outline: none; background: rgba(255,255,255,0.1); color: white;">
+		<option value="">Select Semester</option>
+		<option value="../jnusem1/sem1.html">Semester 1</option>
+	<!--	<option value="../nchmct-sem2/sem2.html">Semester 2</option>
+		<option value="../nchmct-sem3/sem3.html">Semester 3</option>
+		<option value="../nchmct-sem4/sem4.html">Semester 4</option>
+		<option value="../nchmct-sem5/sem5.html">Semester 5</option>
+		<option value="../nchmct-sem6/sem6.html">Semester 6</option>
+		<option value="../course/nchmct-syllabus.html">All Semesters</option>
+	</select>
+</div>
+ -->
+
+<!-- Bg Audio and effects -->
+<div style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
+
+  <button id="soundToggle">♪♪</button>
+
+  <audio id="bgAudio" loop preload="auto">
+    <source src="../sounds/nature.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
+  <audio id="clickSound" preload="auto" src="../sounds/click.mp3"></audio>
+</div>
+
+  <script>
+    const bgAudio = document.getElementById('bgAudio');
+    const clickSound = document.getElementById('clickSound');
+    const toggleBtn = document.getElementById('soundToggle');
+
+    let isPlaying = false;
+
+    // Check saved preference
+    const saved = localStorage.getItem('siteSoundOn');
+    if (saved === 'true') {
+      isPlaying = false;  // we will call toggle to play
+      toggleBtn.click();
+    }
+
+    // Fade-in helper
+    function fadeIn(audio, targetVol = 0.4, step = 0.02, interval = 100) {
+      audio.volume = 0;
+      audio.play();
+      const fade = setInterval(() => {
+        if (audio.volume < targetVol) {
+          audio.volume = Math.min(audio.volume + step, targetVol);
+        } else {
+          clearInterval(fade);
+        }
+      }, interval);
+    }
+
+    // Fade-out helper
+    function fadeOut(audio, step = 0.02, interval = 100) {
+      const fade = setInterval(() => {
+        if (audio.volume > 0) {
+          audio.volume = Math.max(audio.volume - step, 0);
+        } else {
+          audio.pause();
+          clearInterval(fade);
+        }
+      }, interval);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        // Start ambience
+        fadeIn(bgAudio, 0.4);
+        toggleBtn.textContent = '⏹';
+        localStorage.setItem('siteSoundOn', 'true');
+      } else {
+        // Stop ambience
+        fadeOut(bgAudio);
+        toggleBtn.textContent = '▶';
+        localStorage.setItem('siteSoundOn', 'false');
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Click sound effect for links/buttons
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('click', () => {
+        // play click sound (without looping)
+        clickSound.currentTime = 0;
+        clickSound.play();
+      });
+    });
+
+    // Optional: Auto-play attempt after first user interaction
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('click', function once() {
+        if (!isPlaying) {
+          toggleBtn.click();
+        }
+        document.body.removeEventListener('click', once);
+      });
+    });
+  </script>
+
+			<!-- Main -->
+			<div id="main">
+
+				<!-- Overview -->
+				<article id="overview">
+					<h2 class="major">Overview</h2>
+					<p>Welcome to Hospitality Stuff, your trusted source for NCHMCT B.Sc. Hospitality & Hotel Administration Notes and academic resources. This platform is designed to support students pursuing hospitality and tourism courses under <strong>National Council for Hotel Management and Catering Technology (NCHMCT)</strong> affiliated with <strong>Jawaharlal Nehru University (JNU)</strong>.</p>
+					<p>Here, you’ll find well-structured, easy-to-understand notes, developed according to the latest NCHMCT syllabus and examination pattern. Each unit covers essential concepts, practical insights, and industry-relevant examples to help students build both academic understanding and professional competence.</p>
+					<p>Our goal is to make learning simple, accessible, and industry-aligned, empowering every student to succeed in their exams and future hospitality careers.</p>
+
+				</article>
+
+				<!-- Syllabus -->
+				<article id="syllabus">
+					<!-- Content -->
+			<div class="content">
+				<div class="inner" style="padding: 0 1.5rem; max-width: 900px; margin: 0 auto;">
+
+					<center>
+					<h2 class="major">B.Sc. DEGREE IN HOSPITALITY & HOTEL ADMINISTRATION</h2></center>
+					<p><strong>NATIONAL COUNCIL FOR HOTEL MANAGEMENT AND CATERING TECHNOLOGY NOIDA (NCHMCT)</strong><br>
+					<strong>AND</strong><br>
+					<strong>JAWAHARLAL NEHRU UNIVERSITY (JNU)</strong></p>
+
+					<!-- Semester 1 -->
+					<h3>Semester 1</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Subject code</th>
+									<th>Subject (Credits)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>1.</td><td>BMR101 Foundation Course in Food Production -1 (06 credits)</td></tr>
+								<tr><td>2.</td><td>BMR102 Foundation Course in Food & Beverage Service -1 (03 Credits)</td></tr>
+								<tr><td>3.</td><td>BMR103 Foundation Course in Rooms Division Operations-1 (04 credits)</td></tr>
+								<tr><td>4.</td><td>BOE 104 Customer Relation Management (A) OR Employability Skills (B) (02 credits)</td></tr>
+								<tr><td>5.</td><td>BAE105 Communicative English-l (02 credits)</td></tr>
+								<tr><td>6.</td><td>BSE106 Environmental Studies (02 credits)</td></tr>
+								<tr><td>7.</td><td>BVA107 Yoga-l (01 credit)</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+<p>Click Here to View Full Page <a href="../course/nchmct-syllabus.html"> 2024-2025 Syllabus</a></p>
+				</article>
+
+				
+
+			</div>
+
+							<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Hospitality Stuff <a href="https://lancealot.in"> Powered by Lancealot</a>.</p>
+					</footer>
+
+		</div>
+
+		<!-- BG -->
+		<div id="bg"></div>
+
+		<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Fundamentals of Computer Application</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<div class="content">
+					<div class="inner">
+						<h1>Fundamentals of Computer Application</h1>
+						<p>Bachelor Of Hotel Management And Catering Technology<br>
+						<small>Course Code: | GTU BHMCT 2024–25</small></p>
+					</div>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="/gtusem1/sem1.html">BACK</a></li>
+						<li><a href="/index.html">Home</a></li>
+						
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Content -->
+			<div class="content">
+				<div class="inner" style="padding: 0 1.5rem; max-width: 800px; margin: 0 auto;">
+
+					<!-- Module 1 -->
+					<h3>Module 1: Application of Computer in Hotels</h3>
+
+
+					<button onclick="toggleContent('m1')" style="background:#4acaa8;color:white;border:none;padding:0.4rem 0.8rem;border-radius:4px;cursor:pointer;margin:0.5rem 0;display:block;">
+						<span id="m1-text">🔽 Show Details</span>
+					</button>
+					<div id="m1-content" style="display:none;margin-top:1rem;">
+						<ul>
+							<li><strong>Application of Computer in Hotels</strong><br>
+								Application of Computer in Hotels</li>
+							<li><strong>Familiarization with Components of Computers – Hardware</strong><br>
+								Hardware elements – input, storage, processing & output devices. Block diagram of computer</li>
+						</ul>
+
+
+
+					</div>
+
+					<hr />
+
+					<!-- Module 2 -->
+					<h3>Module 2: Introduction to Computers Software</h3>
+					<button onclick="toggleContent('m2')" style="background:#4acaa8;color:white;border:none;padding:0.4rem 0.8rem;border-radius:4px;cursor:pointer;margin:0.5rem 0;display:block;">
+						<span id="m2-text">🔽 Show Details</span>
+					</button>
+					<div id="m2-content" style="display:none;margin-top:1rem;">
+						<ul>
+							<li><strong>Types of Software, System Software, Application Software</strong><br>
+								Types of Software, System Software, Application Software</li>
+							<li><strong>Utility Software’s, Use of MS- Office: Basics of MS- Word. MS- Excel and MS Power Point</strong><br>
+								Utility Software’s, Use of MS- Office: Basics of MS- Word. MS- Excel and MS Power Point</li>
+						</ul>
+
+
+
+					</div>
+
+					<hr />
+
+					<!-- Module 3 -->
+					<h3>Module 3: Internet & Applications</h3>
+					<button onclick="toggleContent('m3')" style="background:#4acaa8;color:white;border:none;padding:0.4rem 0.8rem;border-radius:4px;cursor:pointer;margin:0.5rem 0;display:block;">
+						<span id="m3-text">🔽 Show Details</span>
+					</button>
+					<div id="m3-content" style="display:none;margin-top:1rem;">
+						<ul>
+							<li><strong>Introduction to Internet: Definition of networks, concepts of webpage, website and web searching (browsing)</strong><br>
+								Introduction to Internet: Definition of networks, concepts of webpage, website and web searching (browsing)</li>
+							<li><strong>Benefits, Application, Working, Hardware and Software requirements, World Wide Web, Web Browser, URL, Search Engines, Email etc.</strong><br>
+								Benefits, Application, Working, Hardware and Software requirements, World Wide Web, Web Browser, URL, Search Engines, Email etc.</li>
+						</ul>
+
+
+					</div>
+
+					<hr />
+
+					<!-- Module 4 -->
+					<h3>Module 4: Social Media Applications and Hospitality</h3>
+					<button onclick="toggleContent('m4')" style="background:#4acaa8;color:white;border:none;padding:0.4rem 0.8rem;border-radius:4px;cursor:pointer;margin:0.5rem 0;display:block;">
+						<span id="m4-text">🔽 Show Details</span>
+					</button>
+					<div id="m4-content" style="display:none;margin-top:1rem;">
+						<ul>
+							<li><strong>Introduction to Social Media, Its Role in Hospitality Promotion</strong><br>
+								Introduction to Social Media, Its Role in Hospitality Promotion</li>
+							<li><strong>Social Media-Facebook, Instagram, Linked In, Twitter and Other Social Media Applications</strong><br>
+								Social Media-Facebook, Instagram, Linked In, Twitter and Other Social Media Applications</li>
+							<li><strong>Creating Pages and Profiles, Merits/Demerits of Social Media, Contemporary issues</strong><br>
+								Creating Pages and Profiles, Merits/Demerits of Social Media, Contemporary issues</li>
+						</ul>
+
+
+
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<p class="copyright">
+					&copy; GTU BHMCT 2024–25. Design: <a href="https://html5up.net">HTML5 UP</a>. Powered by <a href="https://LANCEALOT.IN">LANCEALOT</a>.
+				</p>
+			</footer>
+
+		</div>
+
+		<!-- BG -->
+		<div id="bg"></div>
+
+		<!-- Scripts -->
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/browser.min.js"></script>
+		<script src="/assets/js/breakpoints.min.js"></script>
+		<script src="/assets/js/util.js"></script>
+		<script src="/assets/js/main.js"></script>
+
+		<!-- Toggle Script -->
+		<script>
+			function toggleContent(id) {
+				const content = document.getElementById(id + '-content');
+				const textSpan = document.getElementById(id + '-text');
+				if (content.style.display === 'none' || content.style.display === '') {
+					content.style.display = 'block';
+					textSpan.textContent = '🔼 Hide Details';
+				} else {
+					content.style.display = 'none';
+					textSpan.textContent = '🔽 Show Details';
+				}
+			}
+		</script>
+
+	</body>
+</html>

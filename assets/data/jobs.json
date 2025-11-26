@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1764154782416",
+    "employer": "Sundae Club",
+    "title": " Field Executive – Central Kitchen ",
+    "location": "Hyderabad, India",
+    "date": "2025-11-26",
+    "description": "Sundae Club is an upcoming FMCG ice cream brand reimagining what packaged ice cream can be. From bold formats to unexpected flavours, we’re building something exciting — and we’re looking for a creative, skilled, and entrepreneurial chef to lead the charge in our central kitchen.\n",
+    "contact": {
+      "email": "hello.sundaeclub@gmail.com",
+      "phone": "+91 8383057217"
+    }
+  },
+  {
+    "id": "1764151232991",
+    "employer": "Asia Pacific Institute of hotel management ",
+    "title": "Assistant Professor",
+    "location": "Ahmedabad",
+    "date": "2025-11-26",
+    "description": "<ul></li>Food production Faculty </li></ul>",
+    "contact": {
+      "email": "naveen@apihm.ac.in",
+      "phone": "8920492908"
+    }
+  },
+  {
+    "id": "1",
+    "employer": "Hyatt Place",
+    "title": "Multiple Positions",
+    "location": "Not Specified",
+    "date": "2025-11-08",
+    "description": "<ul><li><strong>Open Positions:</strong> Sales Executive, Marketing Executive, DCDP - South Indian, (Commis) Continental, Host - Front Office, Host - Housekeeping, Host - F&B Service</li></ul>",
+    "contact": {
+      "email": "rupali.biswas@hyatt.com, sujal.sagar@hyatt.com",
+      "phone": ""
+    }
+  },
+  {
+    "id": "2",
+    "employer": "Holiday Inn Resort, Goa",
+    "title": "F&B Associate, Technicians",
+    "location": "Goa",
+    "date": "2025-11-06",
+    "description": "<ul><li><strong>Designations:</strong> 1. F&B Associate, 2. Kitchen Technician / Ac Technician</li></ul>",
+    "contact": {
+      "email": "recruitment@holidayinngoa.com",
+      "phone": "7030056825"
+    }
+  },
+  {
+    "id": "3",
+    "employer": "Barbeque Nation",
+    "title": "Area Chef",
+    "location": "Not Specified",
+    "date": "2025-11-04",
+    "description": "<ul><li><strong>Key Responsibilities:</strong> Oversee operations across multiple restaurants, manage quality/consistency/hygiene, train teams, drive menu innovation.</li></ul>",
+    "contact": {
+      "email": "harsh@barbequenation.com",
+      "phone": ""
+    }
+  }
+]
