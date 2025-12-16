@@ -131,82 +131,14 @@
 		<div id="content">
 			<div class="inner">
 
-				<!-- Sidebar: Latest Updates -->
-				<aside
-					style="width: 30%; float: left; margin-right: 2%; background: #ffffff1e; padding: 20px; border-radius: 8px; height: 400px; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth;">
-					<h3 style="margin-bottom: 15px; color: #fdfdfd;">Latest Updates</h3>
-					<div class="notification-list">
-						<div class="notification"
-							style="background: #006edb60; margin-bottom: 1.5px; padding: 10px; border-radius: 5px; border-left: 4px solid #007bff;">
-							<h4 style="margin: 0 0 5px 0; font-size: 14px; color: #2c3e50;">New Job Alert!</h4>
-							<p style="margin: 0; font-size: 12px; opacity: 0.8;">Front Desk Executive - Taj Hotels |
-								Posted: Nov 8, 2025</p>
-						</div>
-						<div class="notification"
-							style="background: #0ebd578e; margin-bottom: 1.5px; padding: 10px; border-radius: 5px; border-left: 4px solid #28a745;">
-							<h4 style="margin: 0 0 5px 0; font-size: 14px;color: #2c3e50;">Industry News</h4>
-							<p style="margin: 0; font-size: 12px; opacity: 0.8;">Sustainable Hospitality Trends 2025 -
-								Read More</p>
-						</div>
-						<div class="notification"
-							style="background: #a8d42ead; margin-bottom: 1.5px; padding: 10px; border-radius: 5px; border-left: 4px solid #ffc107;">
-							<h4 style="margin: 0 0 5px 0; font-size: 14px; color: #2c3e50;">Quick Tip</h4>
-							<p style="margin: 0; font-size: 12px; opacity: 0.8;">Enhance your resume with certifications
-								from IHG Academy.</p>
-						</div>
-						<div class="notification"
-							style="background: #f02f2fb7; margin-bottom: 1.5px; padding: 10px; border-radius: 5px; border-left: 4px solid #dc3545;">
-							<h4 style="margin: 0 0 5px 0; font-size: 14px; color: #2c3e50;">Upcoming Event</h4>
-							<p style="margin: 0; font-size: 12px; opacity: 0.8;">Hospitality Job Fair - Mumbai | Dec 15,
-								2025</p>
-						</div>
-						<!-- Add more notifications here; the sidebar will auto-scroll vertically as content grows -->
-					</div>
-				</aside>
 
-				<style>
-					.notification-list {
-						display: flex;
-						flex-direction: column;
-						gap: 8px;
-						scroll-behavior: smooth;
-						/* Ensures smooth scrolling within the list */
-					}
 
-					aside::-webkit-scrollbar {
-						width: 6px;
-					}
 
-					aside::-webkit-scrollbar-track {
-						background: #f1f1f1;
-						border-radius: 3px;
-					}
 
-					aside::-webkit-scrollbar-thumb {
-						background: #007bff;
-						border-radius: 3px;
-					}
 
-					aside::-webkit-scrollbar-thumb:hover {
-						background: #0056b3;
-					}
-				</style>
-
-				<script>
-					// Optional: Auto-scroll to bottom when new content is added (e.g., via dynamic JS)
-					function addNotification(htmlContent) {
-						const list = document.querySelector('.notification-list');
-						const newNotif = document.createElement('div');
-						newNotif.className = 'notification';
-						newNotif.style.background = '#e9ecef1f'; // Customize styles as needed
-						newNotif.innerHTML = htmlContent;
-						list.appendChild(newNotif);
-						list.scrollTop = list.scrollHeight; // Auto-scroll to bottom with smooth behavior (CSS handles smoothness)
-					}
-				</script>
 
 				<!-- Main Job Posting -->
-				<section style="width: 65%; float: right;">
+				<section style="width: 100%;">
 					<div style="background: #f8f9fa1e; padding: 20px; border-radius: 8px; margin-bottom: 3px;">
 
 						<!-- Category Filters -->
