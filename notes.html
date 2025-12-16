@@ -159,6 +159,13 @@
         let allPages = [];
         let viewState = { level: 'COURSE', course: null, semester: null, subject: null };
 
+        // Parse URL params for initial state
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('course')) viewState.course = params.get('course');
+        if (params.has('semester')) viewState.semester = params.get('semester');
+        if (params.has('subject')) viewState.subject = params.get('subject');
+        if (params.has('level')) viewState.level = params.get('level');
+
         fetch(API_URL)
             .then(res => res.json())
             .then(data => {
@@ -170,6 +177,8 @@
             });
 
         function resetView() {
+            // clear URL params without reload
+            window.history.replaceState({}, '', 'notes.html');
             viewState = { level: 'COURSE', course: null, semester: null, subject: null };
             renderView();
         }
@@ -193,6 +202,7 @@
 
             // Render based on level
             if (viewState.level === 'COURSE') {
+                container.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
                 // Show Unique Courses
                 const courses = [...new Set(allPages.map(p => p.course || 'General'))];
                 container.innerHTML = courses.map(c => `
@@ -204,6 +214,7 @@
                 `).join('');
 
             } else if (viewState.level === 'SEMESTER') {
+                container.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
                 // Show Unique Semesters for selected Course
                 const semesters = [...new Set(filtered.map(p => p.semester || 'Sem 1'))].sort();
                 container.innerHTML = semesters.map(s => `
@@ -215,6 +226,7 @@
                 `).join('');
 
             } else if (viewState.level === 'SUBJECT') {
+                container.style.gridTemplateColumns = 'repeat(auto-fill, minmax(250px, 1fr))';
                 // Show Unique Subjects for selected Semester
                 const subjects = [...new Set(filtered.map(p => p.subject || 'General'))];
                 container.innerHTML = subjects.map(sub => `
@@ -226,17 +238,21 @@
                 `).join('');
 
             } else if (viewState.level === 'UNIT') {
+                container.style.gridTemplateColumns = '1fr';
                 // Show Actual Pages (Units)
                 if (filtered.length === 0) {
                     container.innerHTML = '<p>No notes found in this subject.</p>';
                     return;
                 }
+                // Pass current state in URL
+                const stateParams = `&course=${viewState.course}&semester=${viewState.semester}&subject=${viewState.subject}&level=UNIT`;
+
                 container.innerHTML = filtered.map(page => `
-                    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; border-left: 3px solid #4acaa8; transition: transform 0.2s;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; border-left: 3px solid #4acaa8; transition: transform 0.2s; margin-bottom: 15px;">
                         <span style="font-size: 0.8rem; color: #4acaa8; text-transform: uppercase;">UNIT / CHAPTER</span>
                         <h3 style="margin: 10px 0;">${page.title}</h3>
                         <p style="font-size: 0.9rem; opacity: 0.7;">Updated: ${page.lastUpdated}</p>
-                        <a href="article.html?id=${page.id}" class="button small">Read Note</a>
+                        <a href="article.html?id=${page.id}${stateParams}" class="button small">Read Note</a>
                     </div>
                 `).join('');
             }
@@ -274,8 +290,9 @@
             );
 
             const container = document.getElementById('notes-container');
+            container.style.gridTemplateColumns = '1fr'; // List view for search
             container.innerHTML = filtered.map(page => `
-                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; border-left: 3px solid #ffcc00; transition: transform 0.2s;">
+                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; border-left: 3px solid #ffcc00; transition: transform 0.2s; margin-bottom: 15px;">
                      <p style="font-size: 0.8rem; opacity: 0.6;">Result from ${page.course} > ${page.subject}</p>
                     <h3 style="margin: 5px 0;">${page.title}</h3>
                     <a href="article.html?id=${page.id}" class="button small">Read Note</a>

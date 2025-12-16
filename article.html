@@ -168,6 +168,7 @@
             style="display: block; width: 100%; max-width: 900px; margin: 0 auto; background: #1b1f22; padding: 40px; border-radius: 4px;">
 
             <div class="article-controls">
+                <button class="btn-control" onclick="window.location.href='notes.html'">⬅️ Back</button>
                 <button class="btn-control" onclick="toggleReadMode()">📖 Read Mode</button>
                 <button class="btn-control" onclick="downloadPDF()">⬇️ Download PDF</button>
             </div>
@@ -200,8 +201,26 @@
 
     <script>
         // Fetch and Display Content
-        const pageId = new URLSearchParams(window.location.search).get('id');
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageId = urlParams.get('id');
         const API_URL = 'http://localhost:3000/api/pages';
+
+        // Preserve State for Back Button
+        const course = urlParams.get('course');
+        const semester = urlParams.get('semester');
+        const subject = urlParams.get('subject');
+        const level = urlParams.get('level');
+
+        let backLink = 'notes.html';
+        if (course && semester && subject && level) {
+            backLink = `notes.html?course=${encodeURIComponent(course)}&semester=${encodeURIComponent(semester)}&subject=${encodeURIComponent(subject)}&level=${encodeURIComponent(level)}`;
+        }
+
+        // Update Back Button
+        const backBtn = document.querySelector('.article-controls button:first-child');
+        if (backBtn) {
+            backBtn.onclick = () => window.location.href = backLink;
+        }
 
         if (!pageId) {
             document.getElementById('content-article').innerHTML = '<p>No page ID specified.</p>';
