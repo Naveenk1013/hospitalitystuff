@@ -96,3 +96,90 @@ app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
     console.log(`Admin Panel: http://localhost:${PORT}/admin/index.html`);
 });
+
+// ==========================================
+// Pages API (CMS)
+// ==========================================
+const PAGES_FILE = path.join(__dirname, 'assets', 'data', 'pages.json');
+
+// Get all pages
+app.get('/api/pages', (req, res) => {
+    fs.readFile(PAGES_FILE, 'utf8', (err, data) => {
+        if (err) {
+            if (err.code === 'ENOENT') return res.json([]);
+            return res.status(500).json({ error: 'Failed to read pages data' });
+        }
+        res.json(JSON.parse(data));
+    });
+});
+
+// Get single page by ID
+app.get('/api/pages/:id', (req, res) => {
+    const id = req.params.id;
+    fs.readFile(PAGES_FILE, 'utf8', (err, data) => {
+        if (err) return res.status(500).json({ error: 'Failed to read pages data' });
+        const pages = JSON.parse(data);
+        const page = pages.find(p => p.id === id);
+        if (page) {
+            res.json(page);
+        } else {
+            res.status(404).json({ error: 'Page not found' });
+        }
+    });
+});
+
+// Create or Update Page
+app.post('/api/pages', authenticate, (req, res) => {
+    const newPage = req.body;
+
+    fs.readFile(PAGES_FILE, 'utf8', (err, data) => {
+        let pages = [];
+        if (!err && data) {
+            pages = JSON.parse(data);
+        }
+
+        if (newPage.id) {
+            // Update
+            const index = pages.findIndex(p => p.id === newPage.id);
+            if (index !== -1) {
+                pages[index] = { ...pages[index], ...newPage, lastUpdated: new Date().toISOString().split('T')[0] };
+            } else {
+                return res.status(404).json({ error: 'Page ID not found to update' });
+            }
+        } else {
+            // Create
+            newPage.id = Date.now().toString();
+            newPage.lastUpdated = new Date().toISOString().split('T')[0];
+            if (!newPage.slug) {
+                newPage.slug = newPage.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+            }
+            pages.unshift(newPage);
+        }
+
+        fs.writeFile(PAGES_FILE, JSON.stringify(pages, null, 2), (err) => {
+            if (err) return res.status(500).json({ error: 'Failed to save page' });
+            res.json(newPage);
+        });
+    });
+});
+
+// Delete Page
+app.delete('/api/pages/:id', authenticate, (req, res) => {
+    const id = req.params.id;
+    fs.readFile(PAGES_FILE, 'utf8', (err, data) => {
+        if (err) return res.status(500).json({ error: 'Failed to read data' });
+
+        let pages = JSON.parse(data);
+        const initialLength = pages.length;
+        pages = pages.filter(p => p.id !== id);
+
+        if (pages.length === initialLength) {
+            return res.status(404).json({ error: 'Page not found' });
+        }
+
+        fs.writeFile(PAGES_FILE, JSON.stringify(pages, null, 2), (err) => {
+            if (err) return res.status(500).json({ error: 'Failed to save data' });
+            res.json({ success: true });
+        });
+    });
+});

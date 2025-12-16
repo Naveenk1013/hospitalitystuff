@@ -139,6 +139,7 @@
           <li><a href="#contact">Contact</a></li>
           <li><a href="#support">Support us</a></li>
           <li><a href="/jobs.html">Jobs</a></li>
+          <li><a href="/notes.html">Notes</a></li>
 
 
           <!--<li><a href="#elements">Elements</a></li>-->
@@ -158,6 +159,7 @@
         <option value="">Select Course</option>
         <option value="course/gtu.html">GTU NOTES</option>
         <option value="course/jnu.html">JNU NOTES</option>
+        <option value="/notes.html">New notes</option>
         <!-- 	<option value="course/other.html">OPEN UNIVERSITY</option> 
 	 -->
       </select>
@@ -459,6 +461,38 @@
           knowledge to help students and professionals excel in the world of hospitality and tourism.</p>
         <p>Whether you are revising for exams, preparing lesson plans, or exploring the latest trends in the industry,
           this platform is designed to make learning simple, engaging, and relevant to real-world applications.</p>
+
+        <!-- Latest Notes Section -->
+        <h3
+          style="margin-top: 40px; color: #4acaa8; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px;">
+          Latest Notes</h3>
+        <div id="latest-notes-container" style="margin-top: 20px;">
+          Loading latest notes...
+        </div>
+        <a href="notes.html" class="button small" style="margin-top: 20px;">View All Notes</a>
+
+        <script>
+          fetch('http://localhost:3000/api/pages')
+            .then(res => res.json())
+            .then(data => {
+              const container = document.getElementById('latest-notes-container');
+              if (data.length === 0) {
+                container.innerHTML = '<p>No notes available yet.</p>';
+                return;
+              }
+              // Show last 3 notes
+              const latest = data.slice(0, 3);
+              container.innerHTML = latest.map(page => `
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; margin-bottom: 10px; border-radius: 4px; border-left: 3px solid #4acaa8;">
+                        <h4 style="margin: 0 0 5px 0;"><a href="article.html?id=${page.id}">${page.title}</a></h4>
+                        <span style="font-size: 0.8rem; opacity: 0.7;">${page.category || 'Article'} • ${page.lastUpdated}</span>
+                    </div>
+                `).join('');
+            })
+            .catch(err => {
+              document.getElementById('latest-notes-container').innerHTML = '';
+            });
+        </script>
       </article>
 
       <!-- Support us -->

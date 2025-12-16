@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hospitality Stuff | Notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <style>
+        /* Editor Content Styles */
+        .page-content h1,
+        .page-content h2,
+        .page-content h3 {
+            color: #4acaa8;
+            margin-top: 1.5em;
+        }
+
+        .page-content p {
+            margin-bottom: 1em;
+            line-height: 1.6;
+        }
+
+        .page-content ul,
+        .page-content ol {
+            margin-bottom: 1em;
+            padding-left: 1.5em;
+        }
+
+        .page-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1em 0;
+        }
+
+        .page-content blockquote {
+            border-left: 4px solid #4acaa8;
+            padding-left: 1em;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        /* Force Display for Standalone Page */
+        #main,
+        #content-article {
+            display: block !important;
+            opacity: 1 !important;
+        }
+
+        /* Controls */
+        .article-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+
+        .btn-control {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-control:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Read Mode Styles */
+        body.read-mode {
+            background-color: #f5f5f5 !important;
+        }
+
+        body.read-mode #bg {
+            display: none !important;
+        }
+
+        body.read-mode #header {
+            background: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.read-mode #header h1,
+        body.read-mode #header p,
+        body.read-mode #header nav ul li a {
+            color: #333 !important;
+        }
+
+        /* Target the main paper card with !important to act as backup, but JS will do improved inline overrides */
+        body.read-mode #main {
+            background: #ffffff !important;
+            color: #020202 !important;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid #e1e4e8;
+        }
+
+        /* Text Contrast Overrides */
+        body.read-mode .page-content h1,
+        body.read-mode .page-content h2,
+        body.read-mode .page-content h3,
+        body.read-mode .page-content h4,
+        body.read-mode .page-content h5,
+        body.read-mode .page-content h6 {
+            color: #1a1a1a !important;
+        }
+
+        body.read-mode .page-content p,
+        body.read-mode .page-content li,
+        body.read-mode .page-content span,
+        body.read-mode .page-content div {
+            color: #333333 !important;
+        }
+
+        body.read-mode .page-content strong,
+        body.read-mode .page-content b {
+            color: #000000 !important;
+        }
+
+        body.read-mode .btn-control {
+            background: #e0e0e0;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        body.read-mode .btn-control:hover {
+            background: #d0d0d0;
+        }
+
+        body.read-mode a {
+            color: #2980b9 !important;
+        }
+    </style>
+    <!-- HTML2PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="content">
+                <div class="inner">
+                    <h1 id="page-title">Loading...</h1>
+                    <p id="page-meta">...</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="notes.html">Notes</a></li>
+                    <!-- Add more links if needed -->
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <div id="main"
+            style="display: block; width: 100%; max-width: 900px; margin: 0 auto; background: #1b1f22; padding: 40px; border-radius: 4px;">
+
+            <div class="article-controls">
+                <button class="btn-control" onclick="toggleReadMode()">📖 Read Mode</button>
+                <button class="btn-control" onclick="downloadPDF()">⬇️ Download PDF</button>
+            </div>
+
+            <article id="content-article" class="page-content">
+                <!-- Content will be injected here -->
+                <div style="text-align: center; padding: 50px;">
+                    <div class="loader"></div>
+                    <p>Fetching content...</p>
+                </div>
+            </article>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Hospitality Stuff. Powered by Lancealot.</p>
+        </footer>
+
+    </div>
+
+    <!-- BG -->
+    <div id="bg"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Fetch and Display Content
+        const pageId = new URLSearchParams(window.location.search).get('id');
+        const API_URL = 'http://localhost:3000/api/pages';
+
+        if (!pageId) {
+            document.getElementById('content-article').innerHTML = '<p>No page ID specified.</p>';
+            document.getElementById('page-title').innerText = 'Error';
+        } else {
+            fetch(`${API_URL}/${pageId}`)
+                .then(res => {
+                    if (!res.ok) throw new Error('Page not found');
+                    return res.json();
+                })
+                .then(data => {
+                    document.title = `${data.title} | Hospitality Stuff`;
+                    document.getElementById('page-title').innerText = data.title;
+                    document.getElementById('page-meta').innerText = `${data.category || 'Article'} | Last updated: ${data.lastUpdated}`;
+                    document.getElementById('content-article').innerHTML = data.content;
+
+                    // Ensure visibility by overriding main.js
+                    const mainElement = document.getElementById('main');
+                    mainElement.style.display = 'block';
+                    mainElement.style.opacity = '1';
+                    mainElement.classList.add('active');
+                })
+                .catch(err => {
+                    document.getElementById('page-title').innerText = 'Page Not Found';
+                    document.getElementById('content-article').innerHTML = '<p>The page you are looking for does not exist or has been removed.</p>';
+                });
+        }
+
+        // Helper to force clean text colors and background deeply
+        function forceReadModeStyles(element, isReadMode) {
+            const allElements = element.getElementsByTagName('*');
+            for (let el of allElements) {
+                if (isReadMode) {
+                    // Store original if not exists
+                    if (el.dataset.originalColor === undefined) el.dataset.originalColor = el.style.color || '';
+                    if (el.dataset.originalBg === undefined) el.dataset.originalBg = el.style.backgroundColor || '';
+
+                    // Force dark text (Pure Black)
+                    el.style.color = '#000000';
+                    // Force transparent background for children so they take parents white bg
+                    el.style.backgroundColor = 'transparent';
+                } else {
+                    // Restore
+                    if (el.dataset.originalColor !== undefined) {
+                        el.style.color = el.dataset.originalColor;
+                        delete el.dataset.originalColor;
+                    }
+                    if (el.dataset.originalBg !== undefined) {
+                        el.style.backgroundColor = el.dataset.originalBg;
+                        delete el.dataset.originalBg;
+                    }
+                }
+            }
+        }
+
+        // Feature: Read Mode
+        function toggleReadMode() {
+            document.body.classList.toggle('read-mode');
+            const btn = document.querySelector('button[onclick="toggleReadMode()"]');
+            const mainEl = document.getElementById('main');
+            const contentEl = document.getElementById('content-article');
+
+            if (document.body.classList.contains('read-mode')) {
+                btn.innerText = '🌚 Dark Mode';
+
+                // Explicitly override inline styles for the main container
+                mainEl.style.backgroundColor = '#ffffff';
+                mainEl.style.color = '#000000';
+                mainEl.style.border = '1px solid #ddd';
+
+                // Explicitly clear article container background
+                contentEl.style.backgroundColor = 'transparent';
+                contentEl.style.color = '#000000';
+
+                // Force all content text to be dark and backgrounds transparent
+                forceReadModeStyles(contentEl, true);
+            } else {
+                btn.innerText = '📖 Read Mode';
+
+                // Restore original dark theme styles
+                mainEl.style.backgroundColor = '#1b1f22';
+                mainEl.style.color = '#ffffff';
+                mainEl.style.border = 'none';
+
+                // Restore article container
+                contentEl.style.backgroundColor = '';
+                contentEl.style.color = '';
+
+                // Restore original content colors
+                forceReadModeStyles(contentEl, false);
+            }
+        }
+
+        // Feature: Download PDF
+        function downloadPDF() {
+            const element = document.getElementById('main');
+            const contentEl = document.getElementById('content-article');
+            const mainEl = element; // alias
+            const title = document.getElementById('page-title').innerText.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+
+            const originalBg = element.style.backgroundColor;
+            const originalColor = element.style.color;
+            const originalPos = element.style.position;
+            const originalBorder = element.style.border;
+
+            // Force PDF styles on live element for html2pdf to capture
+            element.style.backgroundColor = '#ffffff';
+            element.style.color = '#000000';
+            element.style.position = 'relative';
+            element.style.border = 'none'; // Clean border for PDF
+
+            // Force article container
+            contentEl.style.backgroundColor = 'transparent';
+            contentEl.style.color = '#000000';
+
+            // Force deep text color cleaning
+            forceReadModeStyles(contentEl, true);
+
+            // Additionally force pure black for PDF (stronger override)
+            const allElements = contentEl.getElementsByTagName('*');
+            for (let el of allElements) {
+                el.style.color = '#000000';
+                // Ensure no background blocks PDF
+                el.style.backgroundColor = 'transparent';
+            }
+
+            // Add Full Page Watermark
+            const watermark = document.createElement('div');
+            watermark.innerHTML = '<h1 style="transform: rotate(-45deg); opacity: 0.1; font-size: 3rem; text-align: center; margin-top: 50%; white-space: nowrap;">Hospitality Stuff<br><span style="font-size: 1.5rem;">Powered by Lancealot.in</span></h1>';
+            watermark.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; pointer-events: none; color: #000;';
+
+            element.insertBefore(watermark, element.firstChild);
+
+            // Add Footer Watermark
+            const footerWatermark = document.createElement('div');
+            footerWatermark.innerHTML = '<p>Hospitality Stuff. Powered by Lancealot.in</p>';
+            footerWatermark.style.cssText = 'text-align: center; margin-top: 30px; font-weight: bold; font-size: 0.8rem; color: #000; border-top: 1px solid #ccc; padding-top: 10px; width: 100%;';
+            element.appendChild(footerWatermark);
+
+            // Hide Controls
+            const controls = document.querySelector('.article-controls');
+            if (controls) controls.style.display = 'none';
+
+            // Ensure Read Mode classes for text contrast
+            const wasReadMode = document.body.classList.contains('read-mode');
+            if (!wasReadMode) document.body.classList.add('read-mode');
+
+            const opt = {
+                margin: [10, 10, 10, 10],
+                filename: `${title}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restore State
+                element.removeChild(watermark);
+                element.removeChild(footerWatermark); // Remove footer
+                element.style.backgroundColor = originalBg;
+                element.style.color = originalColor;
+                element.style.position = originalPos;
+                element.style.border = originalBorder;
+
+                if (controls) controls.style.display = 'flex';
+
+                if (!wasReadMode) {
+                    document.body.classList.remove('read-mode');
+                    mainEl.style.backgroundColor = '#1b1f22';
+                    mainEl.style.color = '';
+                    mainEl.style.border = 'none';
+
+                    contentEl.style.backgroundColor = '';
+                    contentEl.style.color = '';
+
+                    forceReadModeStyles(contentEl, false);
+                } else {
+                    // If we were in read mode, revert to read mode styles (now black)
+                    forceReadModeStyles(contentEl, true);
+
+                    // Re-apply container read mode styles
+                    mainEl.style.backgroundColor = '#ffffff';
+                    mainEl.style.color = '#000000';
+                    mainEl.style.border = '1px solid #ddd';
+
+                    contentEl.style.backgroundColor = 'transparent';
+                    contentEl.style.color = '#000000';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
