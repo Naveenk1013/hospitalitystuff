@@ -203,7 +203,7 @@
         // Fetch and Display Content
         const urlParams = new URLSearchParams(window.location.search);
         const pageId = urlParams.get('id');
-        const API_URL = 'http://localhost:3000/api/pages';
+        const API_URL = 'assets/data/pages.json';
 
         // Preserve State for Back Button
         const course = urlParams.get('course');
@@ -226,10 +226,12 @@
             document.getElementById('content-article').innerHTML = '<p>No page ID specified.</p>';
             document.getElementById('page-title').innerText = 'Error';
         } else {
-            fetch(`${API_URL}/${pageId}`)
-                .then(res => {
-                    if (!res.ok) throw new Error('Page not found');
-                    return res.json();
+            fetch(API_URL)
+                .then(res => res.json())
+                .then(pages => {
+                    const data = pages.find(p => p.id === pageId);
+                    if (!data) throw new Error('Page not found');
+                    return data;
                 })
                 .then(data => {
                     document.title = `${data.title} | Hospitality Stuff`;
