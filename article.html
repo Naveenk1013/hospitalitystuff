@@ -135,6 +135,36 @@
         body.read-mode a {
             color: #2980b9 !important;
         }
+
+        /* Mobile Optimization for Controls */
+        @media screen and (max-width: 600px) {
+            .article-controls {
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            .btn-control {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                white-space: nowrap;
+            }
+        }
+
+        /* Ultra-small screens: Icons only */
+        @media screen and (max-width: 380px) {
+            .btn-text {
+                display: none;
+            }
+
+            .btn-control {
+                font-size: 1.2rem;
+                /* Larger emoji */
+            }
+        }
     </style>
     <!-- HTML2PDF Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -282,11 +312,13 @@
         function toggleReadMode() {
             document.body.classList.toggle('read-mode');
             const btn = document.querySelector('button[onclick="toggleReadMode()"]');
+            const btnText = btn.querySelector('.btn-text');
             const mainEl = document.getElementById('main');
             const contentEl = document.getElementById('content-article');
 
             if (document.body.classList.contains('read-mode')) {
-                btn.innerText = '🌚 Dark Mode';
+                if (btnText) btnText.innerText = 'Dark Mode';
+                btn.firstChild.textContent = '🌚 '; // Update emoji text node if needed, or keeping it simple
 
                 // Explicitly override inline styles for the main container
                 mainEl.style.backgroundColor = '#ffffff';
@@ -300,7 +332,8 @@
                 // Force all content text to be dark and backgrounds transparent
                 forceReadModeStyles(contentEl, true);
             } else {
-                btn.innerText = '📖 Read Mode';
+                if (btnText) btnText.innerText = 'Read Mode';
+                btn.firstChild.textContent = '📖 ';
 
                 // Restore original dark theme styles
                 mainEl.style.backgroundColor = '#1b1f22';
